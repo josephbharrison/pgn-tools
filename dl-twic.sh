@@ -1,23 +1,31 @@
 #!/usr/bin/env bash
 
-mkdir pgn
-cd pgn
+mkdir -f pgn
+cd pgn || exit 1
+
+twic_min=$1
+twic_max=$2
+
+[[ -z $twic_min ]] && twic_min=920
+[[ -z $twic_max ]] && twic_max=1414
 
 # download all pgn files
-for file in $(seq 920 1415)
+for file in $(seq $twic_min $twic_max)
 do
-    wget https://theweekinchess.com/zips/twic${file}g.zip
+    wget "https://theweekinchess.com/zips/twic${file}g.zip"
 done
 
 # unzip pgn
-for file in $(ls -1 *.zip);
+for file in *.zip
 do
-    unzip $file
+    [[ -e "$file" ]] || break
+    unzip "$file"
 done
 
 # concatenate all pgn files
-forfile in $(ls -1 *.pgn)
+for file in *.pgn
 do
-    cat ${file} >> twic.pgn
+    [[ -e "$file" ]] || break
+    cat "${file}" >> twic.pgn
     echo "" >> twic.pgn
 done

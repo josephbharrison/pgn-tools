@@ -1,3 +1,4 @@
+pgn/
 venv/
 __pycache__/
 .env.local
