@@ -1,15 +1,15 @@
 ---
 search:
+  file:
+    arg: true
+    desc: '[mandatory] PGN file (ex: "pgn/twic1368.pgn")'
+    type: string
+    short: f
+    mandatory: true
   help:
     arg: false
     desc: Print usage
     short: h
-  file:
-    arg: true
-    desc: PGN file
-    type: string
-    short: f
-    mandatory: true
   player:
     arg: true
     desc: Player name (white or black)
@@ -37,6 +37,56 @@ search:
       - "1/2-1/2"
     type: str
     short: r
+  eco:
+    arg: true
+    desc: ECO opening name
+    type: string
+    short: e
+    mandatory: false
+  opening:
+    arg: true
+    desc: Opening name
+    type: string
+    short: o
+    mandatory: false
+  variation:
+    arg: true
+    desc: Opening variation name
+    type: string
+    short: V
+    mandatory: false
+  event:
+    arg: true
+    desc: Event name
+    type: string
+    short: E
+    mandatory: false
+  site:
+    arg: true
+    desc: Site (location)
+    type: string
+    short: s
+    mandatory: false
+  game_date:
+    arg: true
+    desc: 'Date of game (format: "YYYY.MM.DD")'
+    type: date
+    short: d
+  event_date:
+    arg: true
+    desc: 'Date of event (format: "YYYY.MM.DD")'
+    type: date
+    short: D
+  date_min:
+    arg: true
+    desc: 'Minimum date (format: "YYYY.MM.DD")'
+    type: date
+    mandatory: false
+  date_max:
+    arg: true
+    desc: 'Maximum date (format: "YYYY.MM.DD")'
+    type: date
+    mandatory: false
   elo_min:
     arg: true
     desc: Minimum elo rating
@@ -47,3 +97,4 @@ search:
     desc: Maximum elo rating
     type: int
     mandatory: false
+
