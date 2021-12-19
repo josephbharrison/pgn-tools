@@ -16,6 +16,13 @@ def search_pgn(
     _games = []
 
     for game in games:
+
+        if game is None:
+            continue
+
+        if not game.headers:
+            continue
+
         h = game.headers
 
         if player:
@@ -127,7 +134,10 @@ def main() -> int:
 
     while game is not None:
         games.append(game)
-        game = chess.pgn.read_game(pgn)
+        try:
+            game = chess.pgn.read_game(pgn)
+        except ValueError as e:
+            print(e)
 
     filtered_games = search_pgn(games=games, **kwargs)
 

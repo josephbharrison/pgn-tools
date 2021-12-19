@@ -17,7 +17,11 @@ search usage:
     --elo_min <int>         Minimum elo rating
     --elo_max <int>         Maximum elo rating
 ```
-Example:
+Examples:
 ```shell
+# Find Caruana games with Elo ratings 2700 or higher in twic1368.pgn
 $ python3 -m search -p Caruana --elo_min 2700 -f pgn/twic1368.pgn
+
+# Create new PGN file from 2300 or higher rating games
+$ for file in pgn/twic[0-9]*.pgn; do python3 -m search --elo_min 2300 -f $file >> pgn/twic-elo-2300.pgn; done
 ```
