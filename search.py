@@ -64,10 +64,16 @@ def search_pgn(
                 continue
 
         if white_team:
+            if 'WhiteTeam' not in h:
+                continue
+
             if white_team.lower() not in str(h['WhiteTeam']).lower():
                 continue
 
         if black_team:
+            if 'BlackTeam' not in h:
+                continue
+
             if black_team.lower() not in str(h['BlackTeam']).lower():
                 continue
 
@@ -82,42 +88,58 @@ def search_pgn(
                 continue
 
         if white_fide_id:
+            if 'WhiteFideId' not in h:
+                continue
+
             if white_fide_id != h['WhiteFideId']:
                 continue
 
         if black_fide_id:
+            if 'BlackFideId' not in h:
+                continue
+
             if white_fide_id != h['BlackFideId']:
                 continue
 
         if result:
+            if 'Result' not in h:
+                continue
+
             if result != h['Result']:
                 continue
 
         if eco:
+            if 'ECO' not in h:
+                continue
+
             if eco.lower() != str(h['ECO']).lower():
                 continue
 
         if opening:
+            if 'Opening' not in h:
+                continue
+
             if result != h['Result']:
-                continue
-
-        if eco:
-            if eco.lower() != str(h['ECO']).lower():
-                continue
-
-        if opening:
-            if opening.lower() not in str(h['Opening']).lower():
                 continue
 
         if variation:
+            if 'Variation' not in h:
+                continue
+
             if variation.lower() not in str(h['Variation']).lower():
                 continue
 
         if event:
+            if 'Event' not in h:
+                continue
+
             if event.lower() not in str(h['Event']).lower():
                 continue
 
         if site:
+            if 'Site' not in h:
+                continue
+
             if site.lower() not in str(h['Site']).lower():
                 continue
 
