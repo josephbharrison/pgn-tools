@@ -61,7 +61,7 @@ def search_pgn(
 
 def main() -> int:
     """
-    Reporting 'main' entrypoint
+    Search 'main' entrypoint
 
     :return: exit status
     """
