@@ -11,10 +11,10 @@ search usage:
     -f, --file <string>        [mandatory] PGN file (ex: "pgn/twic1368.pgn")
     -h, --help                 Print usage
     -p, --player <string>      Player name (white or black)
-    -t, --team <string>        Team name (white or black)
-    -F, --fide_id <string>     FIDE Id (white or black)
     -w, --white <string>       White player name
     -b, --black <string>       Black player name
+    -t, --team <string>        Team name (white or black)
+    -F, --fide_id <string>     FIDE Id (white or black)
     -r, --result <str>         Game result: (1-0, 0-1, 1/2-1/2)
     -e, --eco <string>         ECO opening name
     -o, --opening <string>     Opening name
