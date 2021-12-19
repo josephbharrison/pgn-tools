@@ -18,13 +18,13 @@ search:
     mandatory: false
   team:
     arg: true
-    desc: White team name
+    desc: Team name (white or black)
     type: string
     short: t
     mandatory: false
   fide_id:
     arg: true
-    desc: FIDE Id
+    desc: FIDE Id (white or black)
     type: string
     short: F
     mandatory: false
