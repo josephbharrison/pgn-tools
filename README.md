@@ -11,6 +11,8 @@ search usage:
     -f, --file <string>        [mandatory] PGN file (ex: "pgn/twic1368.pgn")
     -h, --help                 Print usage
     -p, --player <string>      Player name (white or black)
+    -t, --team <string>        White team name
+    -F, --fide_id <string>     FIDE Id
     -w, --white <string>       White player name
     -b, --black <string>       Black player name
     -r, --result <str>         Game result: (1-0, 0-1, 1/2-1/2)
@@ -25,6 +27,10 @@ search usage:
     --date_max <date>          Maximum date (format: "YYYY.MM.DD")
     --elo_min <int>            Minimum elo rating
     --elo_max <int>            Maximum elo rating
+    --white_team <string>      White team name
+    --black_team <string>      Black team name
+    --white_fide_id <string>   White FIDE Id
+    --black_fide_id <string>   Black FIDE Id
 ```
 Examples:
 ```shell
