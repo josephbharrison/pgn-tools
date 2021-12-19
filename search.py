@@ -118,7 +118,7 @@ def main() -> int:
 
     status = check_mandatory(options, opts)
     if status > 0:
-        exit(status)
+        return status
 
     games = []
 

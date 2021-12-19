@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir -f pgn
+mkdir -p pgn
 cd pgn || exit 1
 
 twic_min=$1
@@ -19,10 +19,11 @@ done
 for file in *.zip
 do
     [[ -e "$file" ]] || break
-    unzip "$file"
+    unzip -o "$file"
 done
 
 # concatenate all pgn files
+[[ -f twic.pgn ]] && rm twic.pgn
 for file in *.pgn
 do
     [[ -e "$file" ]] || break
