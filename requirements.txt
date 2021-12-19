@@ -1,0 +1,3 @@
+pyyaml~=5.4.1
+parsita~=1.6.1
+chess~=1.7.0

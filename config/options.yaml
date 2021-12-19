@@ -1,0 +1,49 @@
+---
+search:
+  help:
+    arg: false
+    desc: Print usage
+    short: h
+  file:
+    arg: true
+    desc: PGN file
+    type: string
+    short: f
+    mandatory: true
+  player:
+    arg: true
+    desc: Player name (white or black)
+    type: string
+    short: p
+    mandatory: false
+  white:
+    arg: true
+    desc: White player name
+    type: string
+    short: w
+    mandatory: false
+  black:
+    arg: true
+    desc: Black player name
+    type: string
+    short: b
+    mandatory: false
+  result:
+    arg: true
+    desc: Game result
+    args:
+      - "1-0"
+      - "0-1"
+      - "1/2-1/2"
+    type: str
+    short: r
+  elo_min:
+    arg: true
+    desc: Minimum elo rating
+    type: int
+    mandatory: false
+  elo_max:
+    arg: true
+    desc: Maximum elo rating
+    type: int
+    mandatory: false
