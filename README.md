@@ -1,6 +1,6 @@
 # pgn-tools
 Chess tools for downloading, parsing, and searching PGN files.
-### Download all TWIC PGN files
+### Download TWIC PGN files
 ```shell
 $ ./dl-twic.sh 920 1414
 ```
