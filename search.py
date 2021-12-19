@@ -8,6 +8,12 @@ from common import pgn_load, print_usage, get_options, get_short_opts, get_long_
 def search_pgn(
         games: list = None,
         player: str = None,
+        team: str = None,
+        white_team: str = None,
+        black_team: str = None,
+        fide_id: str = None,
+        white_fide_id: str = None,
+        black_fide_id: str = None,
         white: str = None,
         black: str = None,
         result: str = None,
@@ -36,7 +42,7 @@ def search_pgn(
         h = game.headers
 
         if player:
-            if player.lower() not in str(h['Black']).lower() and player not in str(h['White']).lower():
+            if player.lower() not in str(h['White']).lower() and player not in str(h['Black']).lower():
                 continue
 
         if white:
@@ -45,6 +51,42 @@ def search_pgn(
 
         if black:
             if black.lower() not in str(h['Black']).lower():
+                continue
+
+        if team:
+            if 'WhiteTeam' not in h:
+                h['WhiteTeam'] = ''
+
+            if 'BlackTeam' not in h:
+                h['BlackTeam'] = ''
+
+            if team.lower() not in str(h['WhiteTeam']).lower() and team.lower() not in str(h['BlackTeam']).lower():
+                continue
+
+        if white_team:
+            if white_team.lower() not in str(h['WhiteTeam']).lower():
+                continue
+
+        if black_team:
+            if black_team.lower() not in str(h['BlackTeam']).lower():
+                continue
+
+        if fide_id:
+            if 'WhiteFideId' not in h:
+                h['WhiteFideId'] = ''
+
+            if 'BlackFideId' not in h:
+                h['BlackFideId'] = ''
+
+            if fide_id not in h['WhiteFideId'] and fide_id not in h['BlackFideId']:
+                continue
+
+        if white_fide_id:
+            if white_fide_id != h['WhiteFideId']:
+                continue
+
+        if black_fide_id:
+            if white_fide_id != h['BlackFideId']:
                 continue
 
         if result:
@@ -110,12 +152,12 @@ def search_pgn(
             game_year = int(game_date.split('.')[0])
             game_month = int(game_date.split('.')[1])
             game_day = int(game_date.split('.')[2])
-            game_date = (game_year, game_month, game_day)
+            game_date = date(game_year, game_month, game_day)
 
             search_year = int(date_str.split('.')[0])
             search_month = int(date_str.split('.')[1])
             search_day = int(date_str.split('.')[2])
-            search_date = (search_year, search_month, search_day)
+            search_date = date(search_year, search_month, search_day)
 
             if date_min:
                 if search_date > game_date:
@@ -173,6 +215,12 @@ def main() -> int:
         'player': None,
         'white': None,
         'black': None,
+        'team': None,
+        'white_team': None,
+        'black_team': None,
+        'fide_id': None,
+        'white_fide_id': None,
+        'black_fide_id': None,
         'result': None,
         'eco': None,
         'opening': None,
@@ -201,6 +249,18 @@ def main() -> int:
             kwargs['black'] = a
         elif o in ("-r", "--result"):
             kwargs['result'] = a
+        elif o in ("-t", "--team"):
+            kwargs['team'] = a
+        elif o == "--white_team":
+            kwargs['white_team'] = a
+        elif o == "--black_team":
+            kwargs['black_team'] = a
+        elif o in ("-F", "--fide_id"):
+            kwargs['fide_id'] = a
+        elif o == "--white_fide_id":
+            kwargs['white_fide_id'] = a
+        elif o == "--black_fide_id":
+            kwargs['black_fide_id'] = a
         elif o in ("-e", "--eco"):
             kwargs['eco'] = a
         elif o in ("-o", "--opening"):

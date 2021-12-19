@@ -16,6 +16,18 @@ search:
     type: string
     short: p
     mandatory: false
+  team:
+    arg: true
+    desc: White team name
+    type: string
+    short: t
+    mandatory: false
+  fide_id:
+    arg: true
+    desc: FIDE Id
+    type: string
+    short: F
+    mandatory: false
   white:
     arg: true
     desc: White player name
@@ -96,5 +108,25 @@ search:
     arg: true
     desc: Maximum elo rating
     type: int
+    mandatory: false
+  white_team:
+    arg: true
+    desc: White team name
+    type: string
+    mandatory: false
+  black_team:
+    arg: true
+    desc: Black team name
+    type: string
+    mandatory: false
+  white_fide_id:
+    arg: true
+    desc: White FIDE Id
+    type: string
+    mandatory: false
+  black_fide_id:
+    arg: true
+    desc: Black FIDE Id
+    type: string
     mandatory: false
 
