@@ -19,5 +19,5 @@ search usage:
 ```
 Example:
 ```shell
-   python3 -m search -p Caruana --elo_min 2700 -f pgn/twic1368.pgn
+$ python3 -m search -p Caruana --elo_min 2700 -f pgn/twic1368.pgn
 ```
