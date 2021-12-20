@@ -6,7 +6,8 @@ from common import pgn_load, print_usage, get_options, get_short_opts, get_long_
 
 
 def search_pgn(
-        games: list = None,
+        headers,
+        offset,
         player: str = None,
         team: str = None,
         white_team: str = None,
@@ -29,142 +30,113 @@ def search_pgn(
         elo_min: int = None,
         elo_max: int = None):
 
-    _games = []
+    r = None
 
-    for game in games:
-
-        if game is None:
-            continue
-
-        if not game.headers:
-            continue
-
-        h = game.headers
+    while True:
+        # players
+        pgn_white = headers.get('White', '?')
+        pgn_black = headers.get('Black', '?')
 
         if player:
-            if player.lower() not in str(h['White']).lower() and player not in str(h['Black']).lower():
-                continue
+            if player.lower() not in pgn_white.lower() and player not in pgn_black.lower():
+                break
 
         if white:
-            if white.lower() not in str(h['White']).lower():
-                continue
+            if white.lower() not in pgn_white.lower():
+                break
 
         if black:
-            if black.lower() not in str(h['Black']).lower():
-                continue
+            if black.lower() not in pgn_black.lower():
+                break
 
+        pgn_white_team = headers.get('WhiteTeam', '?')
+        pgn_black_team = headers.get('BlackTeam', '?')
+
+        # team
         if team:
-            if 'WhiteTeam' not in h:
-                h['WhiteTeam'] = ''
-
-            if 'BlackTeam' not in h:
-                h['BlackTeam'] = ''
-
-            if team.lower() not in str(h['WhiteTeam']).lower() and team.lower() not in str(h['BlackTeam']).lower():
-                continue
+            if team.lower() not in pgn_white_team.lower() and team.lower() not in pgn_black_team.lower():
+                break
 
         if white_team:
-            if 'WhiteTeam' not in h:
-                continue
-
-            if white_team.lower() not in str(h['WhiteTeam']).lower():
-                continue
+            if white_team.lower() not in pgn_white_team.lower():
+                break
 
         if black_team:
-            if 'BlackTeam' not in h:
-                continue
+            if black_team.lower() not in pgn_black_team.lower():
+                break
 
-            if black_team.lower() not in str(h['BlackTeam']).lower():
-                continue
+        pgn_white_fide_id = headers.get('WhiteFideId', '?')
+        pgn_black_fide_id = headers.get('BlackFideId', '?')
 
+        # fide_id
         if fide_id:
-            if 'WhiteFideId' not in h:
-                h['WhiteFideId'] = ''
-
-            if 'BlackFideId' not in h:
-                h['BlackFideId'] = ''
-
-            if fide_id not in h['WhiteFideId'] and fide_id not in h['BlackFideId']:
-                continue
+            if fide_id not in pgn_white_fide_id and fide_id not in pgn_black_fide_id:
+                break
 
         if white_fide_id:
-            if 'WhiteFideId' not in h:
-                continue
-
-            if white_fide_id != h['WhiteFideId']:
-                continue
+            if white_fide_id != pgn_white_fide_id:
+                break
 
         if black_fide_id:
-            if 'BlackFideId' not in h:
-                continue
+            if black_fide_id != pgn_black_fide_id:
+                break
 
-            if white_fide_id != h['BlackFideId']:
-                continue
-
+        # result
+        pgn_result = headers.get('Result', '?')
         if result:
-            if 'Result' not in h:
-                continue
+            if result != pgn_result:
+                break
 
-            if result != h['Result']:
-                continue
-
+        # eco
+        pgn_eco = headers.get('ECO', '?')
         if eco:
-            if 'ECO' not in h:
-                continue
+            if eco.lower() != pgn_eco.lower():
+                break
 
-            if eco.lower() != str(h['ECO']).lower():
-                continue
-
+        # opening
+        pgn_opening = headers.get('Opening', '?')
         if opening:
-            if 'Opening' not in h:
-                continue
+            if opening.lower() not in pgn_opening.lower():
+                break
 
-            if result != h['Result']:
-                continue
-
+        # variation
+        pgn_variation = headers.get('Variation', '?')
         if variation:
-            if 'Variation' not in h:
-                continue
+            if variation.lower() not in pgn_variation.lower():
+                break
 
-            if variation.lower() not in str(h['Variation']).lower():
-                continue
-
+        # event
+        pgn_event = headers.get('Event', '?')
         if event:
-            if 'Event' not in h:
-                continue
+            if event.lower() not in pgn_event.lower():
+                break
 
-            if event.lower() not in str(h['Event']).lower():
-                continue
-
+        # site
+        pgn_site = headers.get('Site', '?')
         if site:
-            if 'Site' not in h:
-                continue
+            if site.lower() not in pgn_site.lower():
+                break
 
-            if site.lower() not in str(h['Site']).lower():
-                continue
-
+        # game_date
+        pgn_date = headers.get('Date', '?')
         if game_date:
-            if 'Date' not in h:
-                continue
+            if game_date != pgn_date:
+                break
 
-            if game_date != h['Date']:
-                continue
-
+        # event_date
+        pgn_event_date = headers.get('EventDate', '?')
         if event_date:
-            if 'EventDate' not in h:
-                continue
-
-            if event_date != h['EventDate']:
-                continue
+            if event_date != pgn_event_date:
+                break
 
         if date_min or date_max:
-            if 'EventDate' not in h and 'Date' not in h:
-                continue
+            if pgn_date == '?' and pgn_event_date == '?':
+                break
 
-            if 'Date' in h:
-                game_date = h['Date']
+            if pgn_date != '?':
+                game_date = pgn_date
             else:
-                game_date = h['EventDate']
+                game_date = pgn_event_date
 
             if date_min:
                 date_str = date_min
@@ -183,35 +155,40 @@ def search_pgn(
 
             if date_min:
                 if search_date > game_date:
-                    continue
+                    break
 
             if date_max:
                 if search_date < game_date:
-                    continue
+                    break
+
+        # elo_min
+        pgn_white_elo = headers.get('WhiteElo', '?')
+        pgn_black_elo = headers.get('BlackElo', '?')
 
         if elo_min:
-            if 'WhiteElo' not in h or 'BlackElo' not in h:
-                continue
+            if pgn_white_elo == '?' or pgn_black_elo == '?':
+                break
 
-            if elo_min > int(h['WhiteElo']):
-                continue
+            if elo_min > int(pgn_white_elo):
+                offset = None
 
-            if elo_min > int(h['BlackElo']):
-                continue
+            if elo_min > int(pgn_black_elo):
+                offset = None
 
         if elo_max:
-            if 'BlackElo' not in h or 'WhiteElo' not in h:
-                continue
+            if pgn_white_elo == '?' or pgn_black_elo == '?':
+                break
 
-            if elo_max < int(h['WhiteElo']):
-                continue
+            if elo_max < int(pgn_white_elo):
+                offset = None
 
-            if elo_max < int(h['BlackElo']):
-                continue
+            if elo_max < int(pgn_black_elo):
+                offset = None
 
-        _games.append(game)
+        r = offset
+        break
 
-    return _games
+    return r
 
 
 def main() -> int:
@@ -313,20 +290,23 @@ def main() -> int:
         return status
 
     games = []
-
     pgn = pgn_load(file)
-    game = chess.pgn.read_game(pgn)
+    offsets = []
 
-    while game is not None:
-        games.append(game)
-        try:
-            game = chess.pgn.read_game(pgn)
-        except ValueError as e:
-            print(e)
+    while True:
+        offset = pgn.tell()
+        headers = chess.pgn.read_headers(pgn)
+        if headers is None:
+            break
+        filtered_offset = search_pgn(headers=headers, offset=offset, **kwargs)
+        if filtered_offset:
+            offsets.append(filtered_offset)
 
-    filtered_games = search_pgn(games=games, **kwargs)
+    for offset in offsets:
+        pgn.seek(offset)
+        games.append(chess.pgn.read_game(pgn))
 
-    for game in filtered_games:
+    for game in games:
         print(f'{game}\n')
 
     return status
