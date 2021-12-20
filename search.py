@@ -170,20 +170,20 @@ def search_pgn(
                 break
 
             if elo_min > int(pgn_white_elo):
-                offset = None
+                break
 
             if elo_min > int(pgn_black_elo):
-                offset = None
+                break
 
         if elo_max:
             if pgn_white_elo == '?' or pgn_black_elo == '?':
                 break
 
             if elo_max < int(pgn_white_elo):
-                offset = None
+                break
 
             if elo_max < int(pgn_black_elo):
-                offset = None
+                break
 
         r = offset
         break
