@@ -191,6 +191,26 @@ def search_pgn(
     return r
 
 
+def filter_games(pgn, **kwargs):
+    games = []
+    offsets = []
+
+    while True:
+        offset = pgn.tell()
+        headers = chess.pgn.read_headers(pgn)
+        if headers is None:
+            break
+        filtered_offset = search_pgn(headers=headers, offset=offset, **kwargs)
+        if filtered_offset:
+            offsets.append(filtered_offset)
+
+    for offset in offsets:
+        pgn.seek(offset)
+        games.append(chess.pgn.read_game(pgn))
+
+    return games
+
+
 def main() -> int:
     """
     Search 'main' entrypoint
@@ -289,22 +309,8 @@ def main() -> int:
     if status > 0:
         return status
 
-    games = []
     pgn = pgn_load(file)
-    offsets = []
-
-    while True:
-        offset = pgn.tell()
-        headers = chess.pgn.read_headers(pgn)
-        if headers is None:
-            break
-        filtered_offset = search_pgn(headers=headers, offset=offset, **kwargs)
-        if filtered_offset:
-            offsets.append(filtered_offset)
-
-    for offset in offsets:
-        pgn.seek(offset)
-        games.append(chess.pgn.read_game(pgn))
+    games = filter_games(pgn, **kwargs)
 
     for game in games:
         print(f'{game}\n')
