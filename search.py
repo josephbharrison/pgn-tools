@@ -49,10 +49,9 @@ def search_pgn(
             if black.lower() not in pgn_black.lower():
                 break
 
+        # team
         pgn_white_team = headers.get('WhiteTeam', '?')
         pgn_black_team = headers.get('BlackTeam', '?')
-
-        # team
         if team:
             if team.lower() not in pgn_white_team.lower() and team.lower() not in pgn_black_team.lower():
                 break
