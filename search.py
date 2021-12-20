@@ -52,6 +52,7 @@ def search_pgn(
         # team
         pgn_white_team = headers.get('WhiteTeam', '?')
         pgn_black_team = headers.get('BlackTeam', '?')
+
         if team:
             if team.lower() not in pgn_white_team.lower() and team.lower() not in pgn_black_team.lower():
                 break
@@ -64,10 +65,10 @@ def search_pgn(
             if black_team.lower() not in pgn_black_team.lower():
                 break
 
+        # fide_id
         pgn_white_fide_id = headers.get('WhiteFideId', '?')
         pgn_black_fide_id = headers.get('BlackFideId', '?')
 
-        # fide_id
         if fide_id:
             if fide_id not in pgn_white_fide_id and fide_id not in pgn_black_fide_id:
                 break
@@ -82,52 +83,61 @@ def search_pgn(
 
         # result
         pgn_result = headers.get('Result', '?')
+
         if result:
             if result != pgn_result:
                 break
 
         # eco
         pgn_eco = headers.get('ECO', '?')
+
         if eco:
             if eco.lower() != pgn_eco.lower():
                 break
 
         # opening
         pgn_opening = headers.get('Opening', '?')
+
         if opening:
             if opening.lower() not in pgn_opening.lower():
                 break
 
         # variation
         pgn_variation = headers.get('Variation', '?')
+
         if variation:
             if variation.lower() not in pgn_variation.lower():
                 break
 
         # event
         pgn_event = headers.get('Event', '?')
+
         if event:
             if event.lower() not in pgn_event.lower():
                 break
 
         # site
         pgn_site = headers.get('Site', '?')
+
         if site:
             if site.lower() not in pgn_site.lower():
                 break
 
         # game_date
         pgn_date = headers.get('Date', '?')
+
         if game_date:
             if game_date != pgn_date:
                 break
 
         # event_date
         pgn_event_date = headers.get('EventDate', '?')
+
         if event_date:
             if event_date != pgn_event_date:
                 break
 
+        # date_min and date_max
         if date_min or date_max:
             if pgn_date == '?' and pgn_event_date == '?':
                 break
