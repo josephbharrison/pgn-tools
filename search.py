@@ -38,7 +38,7 @@ def search_pgn(
         pgn_black = headers.get('Black', '?')
 
         if player:
-            if player.lower() not in pgn_white.lower() and player not in pgn_black.lower():
+            if player.lower() not in pgn_white.lower() and player.lower() not in pgn_black.lower():
                 break
 
         if white:
@@ -205,17 +205,29 @@ def filter_games(pgn, **kwargs):
     offsets = []
 
     while True:
-        offset = pgn.tell()
-        headers = chess.pgn.read_headers(pgn)
+        try:
+            offset = pgn.tell()
+        except:
+            break
+
+        try:
+            headers = chess.pgn.read_headers(pgn)
+        except:
+            break
+
         if headers is None:
             break
+
         filtered_offset = search_pgn(headers=headers, offset=offset, **kwargs)
         if filtered_offset:
             offsets.append(filtered_offset)
 
     for offset in offsets:
-        pgn.seek(offset)
-        games.append(chess.pgn.read_game(pgn))
+        try:
+            pgn.seek(offset)
+            games.append(chess.pgn.read_game(pgn))
+        except:
+            pass
 
     return games
 
