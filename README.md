@@ -36,7 +36,7 @@ search usage:
     --white_fide_id <string>   White FIDE Id
     --black_fide_id <string>   Black FIDE Id
 ```
-Examples:
+### Examples:
 ```shell
 # Find Caruana games with Elo ratings 2700 or higher in twic1368.pgn
 $ search-pgn -p Caruana --elo_min 2700 -f pgn/twic/twic1368.pgn
