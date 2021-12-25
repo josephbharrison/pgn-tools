@@ -44,8 +44,8 @@ search-pgn usage:
 # Download all TWIC
 $ ./dl-twic
 
-# Download TWIC 1400-1414
-$ ./dl-twic 1400 1414
+# Download TWIC 920-1414
+$ ./dl-twic 920 1414
 
 # Download TWIC 1415
 $ ./dl-twic 1415
