@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 files=$1
+# shellcheck disable=SC2125
 [[ -z $files ]] && files=pgn/twic/twic[0-9]*.pgn
 
 mkdir -p pgn/eco

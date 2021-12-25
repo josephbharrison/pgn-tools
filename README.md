@@ -39,5 +39,8 @@ $ python3 -m search -p Caruana --elo_min 2700 -f pgn/twic1368.pgn
 
 # Create new PGN file from 2300 or higher rated games
 $ for file in pgn/twic[0-9]*.pgn; do python3 -m search --elo_min 2300 -f $file >> pgn/twic-elo-2300.pgn; done
+
+# Create ECO files from PGN
+$ ./mk-eco.sh
 ```
 
