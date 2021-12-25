@@ -2,15 +2,15 @@
 Chess tools for downloading, parsing, and searching PGN files.
 ### Download TWIC PGN files
 ```shell
-$ ./dl-twic.sh 920 1414
+$ dl-twic 920 1414
 ```
 ### Generate ECO from PGN
 ```shell
-$ ./mk-eco.sh
+$ mk-eco
 ```
 ### Search PGN
 ```sh
-$ python3 -m search-pgn -h
+$ search-pgn -h
 search usage:
     -f, --file <string>        [mandatory] PGN file (ex: "pgn/twic1368.pgn")
     -h, --help                 Print usage
@@ -39,12 +39,12 @@ search usage:
 Examples:
 ```shell
 # Find Caruana games with Elo ratings 2700 or higher in twic1368.pgn
-$ python3 -m search-pgn -p Caruana --elo_min 2700 -f pgn/twic/twic1368.pgn
+$ search-pgn -p Caruana --elo_min 2700 -f pgn/twic/twic1368.pgn
 
 # Create new PGN file from 2300 or higher rated games
-$ for file in pgn/twic/twic[0-9]*.pgn; do python3 -m search-pgn --elo_min 2300 -f $file >> pgn/twic-elo-2300.pgn; done
+$ for file in pgn/twic/twic[0-9]*.pgn; do ./search-pgn --elo_min 2300 -f $file >> pgn/twic-elo-2300.pgn; done
 
-# Update ECO files from specific PGN
-$ ./mk-eco.sh pgn/twic/1415.pgn
+# Update ECO files
+$ mk-eco pgn/twic/1415.pgn
 ```
 

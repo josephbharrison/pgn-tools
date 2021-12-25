@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
 import sys
 import getopt
 import chess.pgn
 from datetime import date
-from common import pgn_load, print_usage, get_options, get_short_opts, get_long_opts, check_mandatory
+from lib.common import pgn_load, print_usage, get_options, get_short_opts, get_long_opts, check_mandatory
 
 
 def search_pgn(
