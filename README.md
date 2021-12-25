@@ -44,8 +44,8 @@ search-pgn usage:
 # Download all TWIC
 $ ./dl-twic
 
-# Download TWIC 920-1414
-$ ./dl-twic 920 1414
+# Download TWIC 1400-1414
+$ ./dl-twic 1400 1414
 
 # Download TWIC 1415
 $ ./dl-twic 1415
@@ -53,7 +53,7 @@ $ ./dl-twic 1415
 # Generate ECO from all TWIC
 $ ./mk-eco
 
-# Update ECO files from TWIC 1415
+# Update ECO from TWIC 1415
 $ ./mk-eco pgn/twic/1415.pgn
 
 # Find Caruana games with Elo ratings 2700 or higher in twic1368.pgn
