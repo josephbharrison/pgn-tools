@@ -27,7 +27,7 @@ done
 
 # concatenate all pgn files
 [[ -f twic.pgn ]] && rm twic.pgn
-for file in *.pgn
+for file in twic*.pgn
 do
     [[ -e "$file" ]] || break
     cat "${file}" >> twic.pgn
