@@ -4,7 +4,7 @@ Chess tools for downloading, parsing, and searching PGN files.
 ```shell
 dl-twic
 ```
-### Generate ECO from PGN
+### Generate ECO library from PGN
 ```shell
 mk-eco
 ```
