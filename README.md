@@ -2,17 +2,19 @@
 Chess tools for downloading, parsing, and searching PGN files.
 ### Download TWIC PGN files
 ```shell
-$ dl-twic
+dl-twic
 ```
 ### Generate ECO from PGN
 ```shell
-$ mk-eco
+mk-eco
 ```
 ### Search PGN
 ```sh
-$ search-pgn
-
-search usage:
+search-pgn
+```
+Usage
+```
+search-pgn usage:
     -f, --file <string>        [mandatory] PGN file (ex: "pgn/twic1368.pgn")
     -h, --help                 Print usage
     -p, --player <string>      Player name (white or black)
