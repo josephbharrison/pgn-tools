@@ -12,7 +12,7 @@ twic_max=$2
 # download all pgn files
 for file in $(seq $twic_min $twic_max)
 do
-    wget "https://theweekinchess.com/zips/twic${file}g.zip"
+    wget -q "https://theweekinchess.com/zips/twic${file}g.zip"
 done
 
 # unzip pgn
