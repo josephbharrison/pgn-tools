@@ -8,12 +8,12 @@ twic_max=$2
 
 [[ -z $twic_max && -n $twic_min ]] && twic_max=$twic_min
 [[ -z $twic_min ]] && twic_min=920
-[[ -z $twic_max ]] && twic_max=1414
+[[ -z $twic_max ]] && twic_max=9999
 
 # download all pgn files
 for file in $(seq $twic_min $twic_max)
 do
-    wget -q "https://theweekinchess.com/zips/twic${file}g.zip"
+    wget -q "https://theweekinchess.com/zips/twic${file}g.zip" || break
 done
 
 # unzip pgn
