@@ -20,6 +20,7 @@ for file in *.zip
 do
     [[ -e "$file" ]] || break
     unzip -o "$file"
+    rm "$file"
 done
 
 # concatenate all pgn files

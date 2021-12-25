@@ -239,7 +239,7 @@ def main() -> int:
     :return: exit status
     """
 
-    options = get_options('search')
+    options = get_options('search-pgn')
     short_opts = get_short_opts(options)
     long_opts = get_long_opts(options)
 
@@ -247,7 +247,7 @@ def main() -> int:
         opts, args = getopt.getopt(sys.argv[1:], short_opts, long_opts)
     except getopt.GetoptError as err:
         print(err)
-        print_usage('search', options)
+        print_usage('search-pgn', options)
         return 2
 
     file = None
@@ -277,7 +277,7 @@ def main() -> int:
 
     for o, a in opts:
         if o in ("-h", "--help"):
-            print_usage('search', options)
+            print_usage('search-pgn', options)
             exit(0)
         elif o in ("-f", "--file"):
             file = a

@@ -15,7 +15,7 @@ do
             eco="${base}${a}${b}"
             echo "creating pgn/eco/${eco}.pgn"
             for file in $files
-                do python3 -m search -e "${eco}" -f "${file}" >> "pgn/eco/${eco}.pgn"
+                do python3 -m search-pgn -e "${eco}" -f "${file}" >> "pgn/eco/${eco}.pgn"
             done
         done
     done

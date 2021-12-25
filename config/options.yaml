@@ -1,5 +1,5 @@
 ---
-search:
+search-pgn:
   file:
     arg: true
     desc: '[mandatory] PGN file (ex: "pgn/twic1368.pgn")'
