@@ -51,7 +51,7 @@ search-pgn:
     short: r
   eco:
     arg: true
-    desc: ECO opening name
+    desc: ECO opening
     type: string
     short: e
     mandatory: false
@@ -101,12 +101,12 @@ search-pgn:
     mandatory: false
   elo_min:
     arg: true
-    desc: Minimum elo rating
+    desc: Minimum Elo rating
     type: int
     mandatory: false
   elo_max:
     arg: true
-    desc: Maximum elo rating
+    desc: Maximum Elo rating
     type: int
     mandatory: false
   white_team:
