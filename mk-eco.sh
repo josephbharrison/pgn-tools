@@ -10,7 +10,7 @@ do
         do
             eco="${base}${a}${b}"
             echo "creating pgn/eco/${eco}.pgn"
-            for file in pgn/twic[0-9]*.pgn
+            for file in pgn/twic/twic[0-9]*.pgn
                 do python3 -m search -e "${eco}" -f "${file}" >> "pgn/eco/${eco}.pgn"
             done
         done

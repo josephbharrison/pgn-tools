@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-mkdir -p pgn
-cd pgn || exit 1
+mkdir -p pgn/twic
+cd pgn/twic || exit 1
 
 twic_min=$1
 twic_max=$2
