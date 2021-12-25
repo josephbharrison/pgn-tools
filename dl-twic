@@ -6,6 +6,7 @@ cd pgn/twic || exit 1
 twic_min=$1
 twic_max=$2
 
+[[ -z $twic_max && -n $twic_min ]] && twic_max=$twic_min
 [[ -z $twic_min ]] && twic_min=920
 [[ -z $twic_max ]] && twic_max=1414
 

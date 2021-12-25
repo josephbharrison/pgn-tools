@@ -2,7 +2,7 @@
 Chess tools for downloading, parsing, and searching PGN files.
 ### Download TWIC PGN files
 ```shell
-$ dl-twic 920 1414
+$ dl-twic
 ```
 ### Generate ECO from PGN
 ```shell
@@ -39,13 +39,25 @@ search usage:
 ```
 ### Examples:
 ```shell
+# Download all TWIC
+$ ./dl-twic
+
+# Download TWIC 920-1414
+$ ./dl-twic 920 1414
+
+# Download TWIC 1415
+$ ./dl-twic 1415
+
+# Generate ECO from all TWIC
+$ ./mk-eco
+
+# Update ECO files from TWIC 1415
+$ ./mk-eco pgn/twic/1415.pgn
+
 # Find Caruana games with Elo ratings 2700 or higher in twic1368.pgn
 $ ./search-pgn -p Caruana --elo_min 2700 -f pgn/twic/twic1368.pgn
 
 # Create new PGN file from 2300 or higher rated games
 $ for file in pgn/twic/twic[0-9]*.pgn; do ./search-pgn --elo_min 2300 -f $file >> pgn/twic-elo-2300.pgn; done
-
-# Update ECO files
-$ ./mk-eco pgn/twic/1415.pgn
 ```
 
