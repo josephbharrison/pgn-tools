@@ -18,7 +18,8 @@ do
 done
 
 # unzip pgn
-for file in *.zip
+# shellcheck disable=SC2012
+for file in $(ls -1 twic*g.zip | sort -V)
 do
     [[ -e "$file" ]] || break
     unzip -o "$file"
@@ -27,7 +28,8 @@ done
 
 # concatenate all pgn files
 [[ -f twic.pgn ]] && rm twic.pgn
-for file in twic*.pgn
+# shellcheck disable=SC2012
+for file in $(ls -1 twic*.pgn | sort -V)
 do
     [[ -e "$file" ]] || break
     cat "${file}" >> twic.pgn
