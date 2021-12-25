@@ -39,10 +39,10 @@ search usage:
 Examples:
 ```shell
 # Find Caruana games with Elo ratings 2700 or higher in twic1368.pgn
-$ python3 -m search-pgn -p Caruana --elo_min 2700 -f pgn/twic1368.pgn
+$ python3 -m search-pgn -p Caruana --elo_min 2700 -f pgn/twic/twic1368.pgn
 
 # Create new PGN file from 2300 or higher rated games
-$ for file in pgn/twic[0-9]*.pgn; do python3 -m search-pgn --elo_min 2300 -f $file >> pgn/twic-elo-2300.pgn; done
+$ for file in pgn/twic/twic[0-9]*.pgn; do python3 -m search-pgn --elo_min 2300 -f $file >> pgn/twic-elo-2300.pgn; done
 
 # Update ECO files from specific PGN
 $ ./mk-eco.sh pgn/twic/1415.pgn
