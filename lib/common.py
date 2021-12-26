@@ -100,6 +100,16 @@ def get_options(option_type: str):
     return options
 
 
+def resulting_elo(player_a: int, player_b: int, game_result: int, k_factor: int = 20):
+    a = player_b - player_a
+    b = a / 400
+    c = 10 ** b
+    d = 1 + c
+    e = 1 / d
+    elo = player_a + k_factor * (game_result - e)
+    return elo
+
+
 def print_usage(name: str = None, options: dict = None):
 
     def buffer_opt(opt_str: str, max_len: int = 0):

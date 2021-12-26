@@ -47,11 +47,11 @@ $ ./dl-twic
 # Download TWIC 920-1414
 $ ./dl-twic 920 1414
 
-# Download TWIC 1415
-$ ./dl-twic 1415
-
 # Generate ECO library from TWIC
 $ ./mk-eco
+
+# Download TWIC 1415
+$ ./dl-twic 1415
 
 # Update ECO library from TWIC 1415
 $ ./mk-eco pgn/twic/1415.pgn
