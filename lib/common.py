@@ -100,13 +100,9 @@ def get_options(option_type: str):
     return options
 
 
-def resulting_elo(player_a_elo: int, player_b_elo: int, game_result: float, k_factor: int = 20):
-    a = player_b_elo - player_a_elo
-    b = a / 400
-    c = 10 ** b
-    d = 1 + c
-    e = 1 / d
-    elo = player_a_elo + k_factor * (game_result - e)
+def resulting_elo(a_elo: int, b_elo: int, result: float, k: int = 20):
+    x = result - (1 / (1 + (10 ** ((b_elo - a_elo) / 400))))
+    elo = a_elo + k * x
     return elo
 
 
